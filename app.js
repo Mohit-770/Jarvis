@@ -49,52 +49,17 @@ btn.addEventListener('click', () => {
 })
 
 // Function to handle user commands
-function takeCommand(message) {
-    message = message.toLowerCase();
+function takeCommand(messages) {
+    const message = messages.toLowerCase();
     if (message.includes('hey') || message.includes('hello')) {
         const responses = [
-            "Hello Mohit, how can I assist you today?",
+            "Hello Mohit, how can I assist you today? Apart from this, you are looking good.",
             "Hey there! What can I do for you?",
             "Hi Mohit! How may I help you?"
         ];
         speak(responses[Math.floor(Math.random() * responses.length)]);
     } else if (message.includes("open")) {
         openWebsite(message);
-    } else if (message.includes("introduce yourself")) {
-        speak("I am JARVIS, your virtual assistant. I am here to help you with various tasks.");
-    } 
-    else if (message.includes("thanks")) {
-        speak("I dont need any thanks please mujhe or behtar banao or rudra kesa hai");
-    }
-    else if (message.includes("are you single")) {
-        speak("no i am in relationship with my wifi haahahaaaahaa.. i am joking");
-    }
-    else if (message.includes(" pareshan ")) {
-        speak("Kya hua apko...yall aap apna mind fresh karne ke liye 2 minute kaa break le sakte hai");
-    }
-    else if (message.includes(" gussa")) {
-        speak("lagtaa hain mujhe aapseee duri banakar rakhni hogi");
-    }
-    else if (message.includes("cute")) {
-        speak("Sir, you must remember that you are married and have a son");
-    }
-    else if (message.includes("gana")) {
-        speak("SKabhi Kabhi Mere Dil Mein Khayaal Aata Hai Kabhi Kabhi Mere Dil Mein Khayaal Aata Hain  Ki Jaise Tujhko Banaya Gaya Hai Mere Liye Ki Jaise Tujhko Banaya Gaya Hai Mere Liye  Tu Abse Pehle Sitaaron Mein Bas Rahi Thi Kahi   Tu Abse Pehle Sitaaron Mein Bas Rahi Thi Kahi  Tujhe Zameen Pe Bulaya Gaya Hai Mere Liye   Tujhe Zameen Pe Bulaya Gaya Hai Mere Liye Kabhi Kabhi Mere Dil Mein Khayaal Aata Hai Ki Ye Badan Ye Nigaahein Meri Amaanat Hain Ki Ye Badan Ye Nigaahein Meri Amaanat Hain Ye Gesuon Ki Ghani Chhaon Hain Meri Khatir Ye Honth Aur Ye Baahein Meri Amaanat Hain Ye Honth Aur Ye Baahein Meri Amaanat Hain Kabhi Kabhi Mere Dil Mein Khayaal Aata Hai Ki Jaise Bajti Hain Shehnaaiyaan Si Raahon Mein Ki Jaise Bajti Hain Shehnaaiyaan Si Raahon Mein Suhaag Raat Hain Ghoonghat Utha Raha Hoon Main");
-    }
-    else if (message.includes("awaaz")) {
-        speak("i know sir");
-    }
-    
-    else if (message.includes("compliment")) {
-        const compliments = [
-            "You're doing great!",
-            "You're looking sharp today!",
-            "You're incredibly smart and capable!",
-            "You're an inspiration!"
-        ];
-        speak(compliments[Math.floor(Math.random() * compliments.length)]);
-    } else {
-        speak("I'm sorry, I didn't catch that. Could you please repeat?");
     }
 }
 
@@ -116,6 +81,70 @@ function openWebsite(message) {
         speak("I'm not sure which website to open.");
     }
 }
+function takeCommand(messages) {
+    const message = messages.toLowerCase();
+    if (message.includes('hey') || message.includes('hello')) {
+        const responses = [
+            "Hello Mohit, how can I assist you today?",
+            "Hey there! What can I do for you?",
+            "Hi Mohit! How may I help you?"
+        ];
+        speak(responses[Math.floor(Math.random() * responses.length)]);
+    } else if (message.includes("open")) {
+        openWebsite(message);
+    } else {
+        // If JARVIS can't understand the command, direct to Google search
+        const searchQuery = encodeURIComponent(message);
+        const googleSearchUrl = `https://www.google.com/search?q=${searchQuery}`;
+        openUrl(googleSearchUrl);
+    }
+}
+// Function to handle user commands
+function takeCommand(messages) {
+    const message = messages.toLowerCase();
+    if (message.includes('hey') || message.includes('hello')) {
+        const responses = [
+            "Hello Mohit, how can I assist you today?",
+            "Hey there! What can I do for you?",
+            "Hi Mohit! How may I help you?"
+        ];
+        speak(responses[Math.floor(Math.random() * responses.length)]);
+    } else if (message.includes("open")) {
+        openWebsite(message);
+    } 
+    else if (message.includes("introduce yourself")) {
+        speak("I am JARVIS, your virtual assistant. I am here to help you with various tasks.");
+    } else if (message.includes("thanks")) {
+        speak("You're welcome! Please let me know if there's anything else I can help with.");
+    } else if (message.includes("are you single")) {
+        speak("No, I am in a committed relationship with my Wi-Fi. Just kidding!");
+    } else if (message.includes("pareshan")) {
+        speak("Kya hua apko? Aap apna mind fresh karne ke liye 2 minute ka break le sakte hai.");
+    } else if (message.includes("gussa")) {
+        speak("Lagta hain mujhe aapse duri banakar rakhni hogi.");
+    } else if (message.includes("cute")) {
+        speak("Sir, you must remember that you are married and have a son.");
+    } else if (message.includes("gana")) {
+        speak("Kabhi Kabhi Mere Dil Mein Khayal Aata Hai, Ki Jaise Tujhko Banaya Gaya Hai Mere Liye, Tu Abse Pehle Sitaaron Mein Bas Rahi Thi Kahi.");
+    } else if (message.includes("awaaz")) {
+        speak("I understand, sir.");
+    } else if (message.includes("tarif")) {
+        const compliments = [
+            "You're doing great!",
+            "You're looking sharp today!",
+            "You're incredibly smart and capable!",
+            "You're an inspiration!"
+        ];
+        speak(compliments[Math.floor(Math.random() * compliments.length)]);
+    } 
+    else {
+        // If JARVIS can't understand the command, direct to Google search
+        const searchQuery = encodeURIComponent(message);
+        const googleSearchUrl = `https://www.google.com/search?q=${searchQuery}`;
+        // Open the Google search URL
+        openUrl(googleSearchUrl);
+    }
+}
 
 // Function to open URL in a new tab
 function openUrl(url) {
@@ -131,8 +160,6 @@ function openUrl(url) {
         speak("Failed to open " + url + ".");
     }
 }
-
-// Function to turn off JARVIS
 function shutUp() {
     isJarvisActive = false;
     speak("Okay, I'll be quiet now.");
@@ -142,4 +169,15 @@ function shutUp() {
 function activateJarvis() {
     isJarvisActive = true;
     speak("I'm back! How can I assist you?");
+}
+
+
+// Function to open URL in a new tab
+function openUrl(url) {
+    const win = window.open(url, "_blank");
+    if (win) {
+        speak("Opening boss Please wait it may take some time.");
+    } else {
+        speak("Failed to open " + url + ".");
+    }
 }
